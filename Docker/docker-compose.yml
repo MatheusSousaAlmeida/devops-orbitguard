@@ -1,0 +1,68 @@
+services:
+
+  oracle:
+    image: gvenzl/oracle-xe:21-slim
+    container_name: rm563734-orbitguard-oracle
+    restart: unless-stopped
+    environment:
+      ORACLE_PASSWORD: Oracle123
+      APP_USER: rm563734
+      APP_USER_PASSWORD: OrbitGuard@2026
+    volumes:
+      - orbitguard-oracle-data:/opt/oracle/oradata
+    ports:
+      - "1521:1521"
+    networks:
+      - orbitguard-net
+    healthcheck:
+      test: ["CMD-SHELL", "healthcheck.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 120s
+
+  migrations:
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    working_dir: /src/OrbitGuard
+    volumes:
+      - .:/src
+    environment:
+      ConnectionStrings__Oracle: "User Id=rm563734;Password=OrbitGuard@2026;Data Source=oracle:1521/XEPDB1;"
+    command: >
+      bash -c "dotnet tool install --global dotnet-ef &&
+               export PATH=$$PATH:/root/.dotnet/tools &&
+               dotnet restore &&
+               dotnet ef database update"
+    depends_on:
+      oracle:
+        condition: service_healthy
+    networks:
+      - orbitguard-net
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: orbitguard-api:latest
+    container_name: rm563734-orbitguard-api
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__Oracle: "User Id=rm563734;Password=OrbitGuard@2026;Data Source=oracle:1521/XEPDB1;"
+    depends_on:
+      migrations:
+        condition: service_completed_successfully
+    networks:
+      - orbitguard-net
+
+volumes:
+  orbitguard-oracle-data:
+    name: orbitguard-oracle-data
+    driver: local
+
+networks:
+  orbitguard-net:
+    driver: bridge
