@@ -1,10 +1,10 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-COPY OrbitGuard/OrbitGuard.csproj OrbitGuard/
+COPY OrbitGuard-API/OrbitGuard/OrbitGuard.csproj OrbitGuard/
 RUN dotnet restore OrbitGuard/OrbitGuard.csproj
 
-COPY OrbitGuard/ OrbitGuard/
+COPY OrbitGuard-API/OrbitGuard/ OrbitGuard/
 WORKDIR /src/OrbitGuard
 RUN dotnet publish OrbitGuard.csproj -c Release -o /app/publish --no-restore
 

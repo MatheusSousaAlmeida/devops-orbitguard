@@ -23,7 +23,7 @@ services:
 
   migrations:
     image: mcr.microsoft.com/dotnet/sdk:8.0
-    working_dir: /src/OrbitGuard
+    working_dir: /src/OrbitGuard-API/OrbitGuard
     volumes:
       - .:/src
     environment:
