@@ -1,7 +1,7 @@
 #!/bin/bash
 
 RESOURCE_GROUP="rg-orbitguard"
-LOCATION="brazilsouth"
+LOCATION="canadacentral"
 VM_NAME="vm-orbitguard"
 VM_SIZE="Standard_D2s_v3"
 ADMIN_USER="azureuser"
