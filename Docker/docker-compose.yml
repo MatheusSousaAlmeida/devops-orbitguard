@@ -6,8 +6,8 @@ services:
     restart: unless-stopped
     environment:
       ORACLE_PASSWORD: Oracle123
-      APP_USER: rm563734
-      APP_USER_PASSWORD: OrbitGuard@2026
+      APP_USER: rm563230
+      APP_USER_PASSWORD: 201106
     volumes:
       - orbitguard-oracle-data:/opt/oracle/oradata
     ports:
@@ -27,7 +27,7 @@ services:
     volumes:
       - .:/src
     environment:
-      ConnectionStrings__Oracle: "User Id=rm563734;Password=OrbitGuard@2026;Data Source=oracle:1521/XEPDB1;"
+      ConnectionStrings__Oracle: "User Id=rm563230;Password=201106;Data Source=oracle:1521/XEPDB1;"
     command: >
       bash -c "dotnet tool install --global dotnet-ef &&
                export PATH=$$PATH:/root/.dotnet/tools &&
@@ -51,7 +51,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:8080
-      ConnectionStrings__Oracle: "User Id=rm563734;Password=OrbitGuard@2026;Data Source=oracle:1521/XEPDB1;"
+      ConnectionStrings__Oracle: "User Id=rm563230;Password=201106;Data Source=oracle:1521/XEPDB1;"
     depends_on:
       migrations:
         condition: service_completed_successfully
