@@ -12,8 +12,8 @@
 - [Dockerfile](#-dockerfile)
 - [Docker Compose](#-docker-compose)
 - [Script Azure CLI](#️-script-azure-cli)
-- [Integrantes](#-integrantes)
 - [Estrutura do Repositório](#-estrutura-do-repositório)
+- [Integrantes](#-integrantes)
 
 
 
