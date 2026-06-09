@@ -18,11 +18,14 @@
 
 ## 📖 Descrição do Projeto
 
-O **OrbitGuard DevOps** é o repositório de infraestrutura da OrbitGuard API — uma API RESTful para **monitoramento de riscos ambientais** desenvolvida em **ASP.NET Core 8** com **Oracle Database** e **Entity Framework Core**.
+O OrbitGuard é uma API RESTful desenvolvida em ASP.NET Core 8 voltada para o monitoramento inteligente via satélites de riscos ambientais. A plataforma centraliza dados de sensores IoT distribuídos em regiões de risco, processa alertas em tempo real e coordena a resposta a emergências como enchentes, deslizamentos e eventos climáticos extremos.
+A solução conecta três pilares fundamentais do gerenciamento de crises:
 
-A solução integra sensores IoT, alertas inteligentes, gestão de abrigos, ocorrências e auditoria de eventos, com foco em segurança e resposta a desastres ambientais.
+Monitoramento — sensores IoT coletam leituras contínuas de regiões monitoradas, alimentando um histórico de risco que embasa a emissão de alertas
+Resposta — ocorrências são registradas e vinculadas a alertas ativos, permitindo rastreabilidade completa de cada evento
+Proteção — abrigos de emergência têm capacidade e recursos gerenciados em tempo real, orientando o deslocamento seguro da população
 
-Este repositório contém todos os recursos necessários para provisionar, configurar e executar a solução completa em ambiente de nuvem Azure, utilizando Docker para containerização e isolamento dos serviços.
+A infraestrutura é implantada em nuvem Azure com dois containers Docker integrados: a API .NET e o banco Oracle XE, ambos orquestrados via Docker Compose com migrations automáticas, volume nomeado para persistência e execução com usuário sem privilégios administrativos.
 
 **Stack de infraestrutura:**
 
