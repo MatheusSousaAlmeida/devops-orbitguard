@@ -11,7 +11,6 @@
 - [Instalação — How To](#-instalação--how-to)
 - [Dockerfile](#-dockerfile)
 - [Docker Compose](#-docker-compose)
-- [Script Azure CLI](#️-script-azure-cli)
 - [Estrutura do Repositório](#-estrutura-do-repositório)
 - [Integrantes](#-integrantes)
 
@@ -136,7 +135,7 @@ http://<IP>:8080/swagger
 ### Passo 1 — Clonar este repositório
 
 ```bash
-git clone https://github.com/<usuario>/devops-orbitguard
+git clone https://github.com/MatheusSousaAlmeida/devops-orbitguard
 cd devops-orbitguard
 ```
 
@@ -147,7 +146,7 @@ bash Script/prov_VM.sh
 ```
 
 O script executa em sequência:
-- **Tarefa 1** — Cria o Resource Group `rg-orbitguard` e a VM Ubuntu 24.04 em `brazilsouth`
+- **Tarefa 1** — Cria o Resource Group `rg-orbitguard` e a VM Ubuntu 24.04 em `canadacentral`
 - **Tarefa 2** — Abre as portas 22, 80, 8080 e 1521 no NSG
 - **Tarefa 3** — Instala o Docker Engine na VM e adiciona o usuário ao grupo docker
 - **Tarefa 4** — Instala Git, nano, curl e demais ferramentas
@@ -158,25 +157,24 @@ Ao final exibe o **IP público e credenciais de acesso à VM**.
 
 ```bash
 ssh azureuser@<IP_DA_VM>
-# Senha: OrbitGuard@Azure2026
 ```
 
 ### Passo 4 — Clonar o repositório da aplicação
 
 ```bash
 cd /opt/orbitguard
-git clone https://github.com/<usuario>/OrbitGuard-API.git .
+git clone https://github.com/GabrielCabralmm/OrbitGuard-API .
 ```
 
 ### Passo 5 — Criar os arquivos Docker
 
 ```bash
 # Criar o Dockerfile
-nano /opt/orbitguard/Dockerfile
+vi /opt/orbitguard/Dockerfile
 # (colar o conteúdo da seção Dockerfile abaixo)
 
 # Criar o docker-compose.yml
-nano /opt/orbitguard/docker-compose.yml
+vi /opt/orbitguard/docker-compose.yml
 # (colar o conteúdo da seção Docker Compose abaixo)
 ```
 
@@ -221,8 +219,7 @@ docker exec rm563734-orbitguard-api pwd
 # Listar arquivos da API
 docker exec rm563734-orbitguard-api ls -l
 
-# Entrar no Oracle
-docker exec -it rm563734-orbitguard-oracle sqlplus rm563230/201106@XEPDB1
+
 
 # Parar tudo
 docker compose down
@@ -338,16 +335,6 @@ networks:
   orbitguard-net:
     driver: bridge
 ```
-
-
-## ☁️ Script Azure CLI
-
-O script `Script/prov_VM.sh` realiza as 4 tarefas em sequência:
-
-- **Tarefa 1** — Provisiona a VM Linux no Azure (Ubuntu 24.04, Standard_D2s_v3, brazilsouth)
-- **Tarefa 2** — Abre as portas necessárias no NSG (22, 80, 8080, 1521)
-- **Tarefa 3** — Instala o Docker Engine na VM e adiciona o usuário ao grupo docker
-- **Tarefa 4** — Instala Git, nano, curl e demais ferramentas
 
 
 ## 📁 Estrutura do Repositório
