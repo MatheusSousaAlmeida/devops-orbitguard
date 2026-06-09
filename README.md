@@ -66,7 +66,7 @@ O container de migrations garante que as tabelas do banco sejam criadas automati
 
 ## 🏗️ Arquitetura
 
-![Arquitetura OrbitGuard](/Images/diagrama-devops.png)
+![Arquitetura OrbitGuard](/Images/image.png)
 
 
 
