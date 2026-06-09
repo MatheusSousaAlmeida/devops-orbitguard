@@ -36,7 +36,7 @@ A infraestrutura é implantada em nuvem Azure com dois containers Docker integra
 | Containerização | Docker Engine + Docker Compose |
 | Aplicação | ASP.NET Core 8 (.NET 8) |
 | Banco de Dados | Oracle XE 21c (`gvenzl/oracle-xe`) |
-| Documentação | Swagger / OpenAPI |
+| Documentação | Swagger |
 
 
 ## 💼 Benefícios para o Negócio
